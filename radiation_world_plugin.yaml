@@ -1,3 +1,0 @@
-/radiation_world_plugin:
-  ros__parameters:
-    use_sim_time: true

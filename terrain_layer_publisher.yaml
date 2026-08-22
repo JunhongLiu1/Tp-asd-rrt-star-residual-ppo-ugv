@@ -1,7 +1,0 @@
-/terrain_layer_publisher:
-  ros__parameters:
-    data_directory: /home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed
-    frame_id: map
-    publish_rate_hz: 1.0
-    terrain_level: hard
-    use_sim_time: true

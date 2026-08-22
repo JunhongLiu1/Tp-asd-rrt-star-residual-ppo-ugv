@@ -1,6 +1,0 @@
-/terrain_query_server:
-  ros__parameters:
-    data_directory: /home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed
-    service_name: /query_terrain
-    terrain_level: hard
-    use_sim_time: true

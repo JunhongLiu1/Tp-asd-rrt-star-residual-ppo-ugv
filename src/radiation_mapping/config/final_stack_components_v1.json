@@ -1,46 +1,33 @@
 {
   "version": "final_stack_components_v1",
   "canonical_components": {
+    "global_planner": {
+      "algorithm": "TP-ASD-RRT*",
+      "file": "risk_aware_planner_cpp/src/planner_core.cpp",
+      "role": "Terrain-radiation-time risk-aware online path planning"
+    },
+    "edge_cost": {
+      "algorithm": "Terrain-Radiation-Time Edge Cost",
+      "file": "risk_aware_planner_cpp/include/risk_aware_planner_cpp/edge_cost_model.hpp",
+      "role": "Score path edges using distance, terrain, radiation and time"
+    },
     "path_follower": {
-      "file": "rviz_dynamic_path_follower.py",
-      "role": "Execute nav_msgs/Path in Gazebo",
-      "planning_cost_owner": false
+      "algorithm": "Pure Pursuit + PID",
+      "file": "risk_aware_planner_cpp/src/path_follower_node.cpp",
+      "role": "Track nav_msgs/Path and publish the PID baseline command"
     },
-    "terrain_layer_source": {
-      "file": "terrain_layers_<level>.npz",
-      "role": "Provide elevation, slope, roughness, impedance and traversability"
+    "residual_controller": {
+      "algorithm": "Safety-Bounded Residual PPO",
+      "file": "risk_aware_residual_rl/risk_aware_residual_rl/residual_policy_node.py",
+      "role": "Apply a bounded learned residual to the PID baseline"
     },
-    "terrain_path_evaluator": {
-      "file": "terrain_path_evaluator.py",
-      "role": "Independent post-planning path evaluation",
-      "planning_cost_owner": false
-    },
-    "common_cost_model": {
-      "file": "common_cost_model.py",
-      "role": "Shared planning edge-cost implementation"
-    },
-    "asd_rrt_star_source": {
-      "file": "rviz_asd_time_aware_rrt_star_planner.py",
-      "status": "provisional_pending_edge_cost_review"
-    },
-    "geometric_rrt_star": {
-      "file": "rrt_star_baseline_planner.py",
-      "role": "Auxiliary geometric baseline"
+    "safety_gate": {
+      "algorithm": "Fail-Closed Safety Gate",
+      "file": "risk_aware_planner_cpp/src/cmd_vel_safety_node.cpp",
+      "role": "Validate commands and exclusively publish /cmd_vel"
     }
   },
   "final_path_topics": {
-    "asd_rrt_star": "/asd_rrt_star_path",
-    "time_penalised_asd_rrt_star": "/tp_asd_rrt_star_path",
-    "aco": "/aco_path"
-  },
-  "legacy_components": [
-    "asd_path_waypoint_follower.py",
-    "terrain_cost_map_node.py",
-    "fusion_cost_map_node.py",
-    "fusion_cost_service.py",
-    "path_score_service.py",
-    "time_aware_path_cost_service.py",
-    "week4_5_rviz_demo.py",
-    "week4_5_algorithm_result_exporter.py"
-  ]
+    "tp_asd_rrt_star": "/planned_path"
+  }
 }
