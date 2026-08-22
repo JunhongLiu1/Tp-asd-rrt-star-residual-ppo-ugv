@@ -1,0 +1,22 @@
+{
+  "version": "r2_normalized_final_score_v1",
+  "ranking_rule": "lower_is_better",
+  "weights": {
+    "radiation": 0.4,
+    "terrain": 0.4,
+    "execution_time": 0.2
+  },
+  "metrics": {
+    "radiation": "executed_radiation_map_cost",
+    "terrain": "executed_terrain_cost",
+    "execution_time": "execution_time_follower_s"
+  },
+  "normalization": {
+    "method": "fixed_reference_division",
+    "calibration_reference_rule": "maximum successful pilot value multiplied by 1.10",
+    "clamp_normalized_values": false,
+    "reason_for_no_clamp": "Runs worse than the calibration reference must retain a penalty above 1.0."
+  },
+  "formula": "100*(0.4*R/R_ref + 0.4*T/T_ref + 0.2*E/E_ref)",
+  "actual_dose_note": "dose_during_execution_usv remains a reported physical safety metric but is not added again because radiation-map cost is already the radiation term."
+}

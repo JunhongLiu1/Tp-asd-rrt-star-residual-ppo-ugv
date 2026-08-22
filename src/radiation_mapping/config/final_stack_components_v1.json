@@ -1,0 +1,46 @@
+{
+  "version": "final_stack_components_v1",
+  "canonical_components": {
+    "path_follower": {
+      "file": "rviz_dynamic_path_follower.py",
+      "role": "Execute nav_msgs/Path in Gazebo",
+      "planning_cost_owner": false
+    },
+    "terrain_layer_source": {
+      "file": "terrain_layers_<level>.npz",
+      "role": "Provide elevation, slope, roughness, impedance and traversability"
+    },
+    "terrain_path_evaluator": {
+      "file": "terrain_path_evaluator.py",
+      "role": "Independent post-planning path evaluation",
+      "planning_cost_owner": false
+    },
+    "common_cost_model": {
+      "file": "common_cost_model.py",
+      "role": "Shared planning edge-cost implementation"
+    },
+    "asd_rrt_star_source": {
+      "file": "rviz_asd_time_aware_rrt_star_planner.py",
+      "status": "provisional_pending_edge_cost_review"
+    },
+    "geometric_rrt_star": {
+      "file": "rrt_star_baseline_planner.py",
+      "role": "Auxiliary geometric baseline"
+    }
+  },
+  "final_path_topics": {
+    "asd_rrt_star": "/asd_rrt_star_path",
+    "time_penalised_asd_rrt_star": "/tp_asd_rrt_star_path",
+    "aco": "/aco_path"
+  },
+  "legacy_components": [
+    "asd_path_waypoint_follower.py",
+    "terrain_cost_map_node.py",
+    "fusion_cost_map_node.py",
+    "fusion_cost_service.py",
+    "path_score_service.py",
+    "time_aware_path_cost_service.py",
+    "week4_5_rviz_demo.py",
+    "week4_5_algorithm_result_exporter.py"
+  ]
+}

@@ -1,0 +1,12 @@
+std_msgs/Header header
+uint64 path_version
+float64 lateral_error_m
+float64 heading_error_rad
+float64 curvature
+float64 reference_linear_mps
+float64 actual_linear_mps
+float64 reference_angular_rps
+float64 actual_angular_rps
+bool saturated
+float64 linear_jerk_mps3
+float64 terrain_impedance

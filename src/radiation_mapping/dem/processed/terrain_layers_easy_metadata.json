@@ -1,0 +1,79 @@
+{
+  "source_metadata": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/dem_terrain_easy_metadata.json",
+  "source_heightmap": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/dem_inspired_heightmap_513.png",
+  "output_npz": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/terrain_layers_easy.npz",
+  "coordinate_convention": {
+    "array_row_zero": "positive world Y / top of map",
+    "array_column_zero": "negative world X / left of map",
+    "ros_occupancy_grid_note": "Flip arrays vertically before flattening for OccupancyGrid publication."
+  },
+  "grid": {
+    "resolution_m": 0.1,
+    "width_cells": 190,
+    "height_cells": 300,
+    "size_x_m": 19.0,
+    "size_y_m": 30.0,
+    "origin_x_m": -9.5,
+    "origin_y_m": -15.0
+  },
+  "terrain": {
+    "source_size_x_m": 19.047619047619047,
+    "source_size_y_m": 30.0,
+    "relief_m": 0.8263480787278574
+  },
+  "cost_model": {
+    "slope_weight": 0.75,
+    "roughness_weight": 0.25,
+    "slope_cost_limit_deg": 20.0,
+    "roughness_cost_limit_m": 0.06,
+    "roughness_window_m": 0.5,
+    "roughness_window_cells": 5,
+    "maximum_traversable_slope_deg": 22.0,
+    "maximum_traversable_roughness_m": 0.1
+  },
+  "statistics": {
+    "elevation_m": {
+      "minimum": 0.0,
+      "mean": 0.4156428172788176,
+      "median": 0.44345667565476365,
+      "percentile_90": 0.6771069941026996,
+      "percentile_95": 0.7617928135612935,
+      "maximum": 0.8263480787278576
+    },
+    "slope_deg": {
+      "minimum": 0.0,
+      "mean": 5.287266110201943,
+      "median": 4.880506753618285,
+      "percentile_90": 10.074462877207017,
+      "percentile_95": 11.986940132101743,
+      "maximum": 18.236760737296354
+    },
+    "roughness_m": {
+      "minimum": 0.0,
+      "mean": 0.013177855030349555,
+      "median": 0.012037261607635377,
+      "percentile_90": 0.024786052757606425,
+      "percentile_95": 0.029441682268627204,
+      "maximum": 0.04465373511601499
+    },
+    "terrain_impedance": {
+      "minimum": 0.0,
+      "mean": 0.253180208425696,
+      "median": 0.23307532397908493,
+      "percentile_90": 0.4811271143347802,
+      "percentile_95": 0.5720853766476968,
+      "maximum": 0.8627797634776762
+    },
+    "valid_cells": 57000,
+    "traversable_cells": 57000,
+    "traversable_fraction": 1.0
+  },
+  "preview_images": {
+    "elevation": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/terrain_layers_easy_elevation.png",
+    "slope": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/terrain_layers_easy_slope.png",
+    "roughness": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/terrain_layers_easy_roughness.png",
+    "impedance": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/terrain_layers_easy_impedance.png",
+    "validity": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/terrain_layers_easy_validity.png",
+    "traversability": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/terrain_layers_easy_traversability.png"
+  }
+}

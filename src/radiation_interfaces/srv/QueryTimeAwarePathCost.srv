@@ -1,0 +1,10 @@
+float64[] x_points
+float64[] y_points
+---
+float64 path_length
+float64 travel_time
+float64 radiation_dose
+float64 terrain_cost
+float64 final_score
+bool success
+string message

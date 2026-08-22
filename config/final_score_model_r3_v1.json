@@ -1,0 +1,30 @@
+{
+  "version": "r3_normalized_final_score_v1",
+  "ranking_rule": "lower_is_better",
+  "weights": {
+    "radiation": 0.4,
+    "terrain": 0.4,
+    "execution_time": 0.2
+  },
+  "metrics": {
+    "radiation": "executed_radiation_map_cost",
+    "terrain": "executed_terrain_cost",
+    "execution_time": "execution_time_follower_s"
+  },
+  "normalization": {
+    "method": "fixed_reference_division",
+    "pilot_reference_rule": "maximum successful pilot value multiplied by 1.10",
+    "formal_reference_status": "not_frozen",
+    "clamp_normalized_values": false
+  },
+  "formula": "100*(0.4*R/R_ref + 0.4*T/T_ref + 0.2*E/E_ref)",
+  "pilot_acceptance_targets": {
+    "all_three_runs_valid": true,
+    "radiation_cost_relative_spread_percent_minimum": 10.0,
+    "radiation_map_fraction_ge_90_preferred_range": [0.01, 0.06],
+    "radiation_map_fraction_ge_70_preferred_range": [0.05, 0.15],
+    "radiation_map_fraction_ge_50_preferred_range": [0.10, 0.30],
+    "radiation_map_fraction_eq_100_maximum": 0.10
+  },
+  "dose_note": "Actual dose remains in the CSV as a physical validation metric and is not added a second time to the score."
+}

@@ -1,0 +1,44 @@
+{
+  "methodology_version": "R3_ACO_V8_FINAL_SCORE_FROZEN_V2",
+  "scenario": "H_S1_R3_final",
+  "lower_is_better": true,
+
+  "weights": {
+    "radiation": 0.4,
+    "terrain": 0.4,
+    "execution_time": 0.2
+  },
+
+  "references": {
+    "executed_radiation_map_cost": 10.713451100000002,
+    "executed_terrain_cost": 12.9489118,
+    "execution_time_s": 89.012
+  },
+
+  "normalization": {
+    "formula": "min(max(raw/reference, 0), 1)",
+    "clip_to_unit_interval": true
+  },
+
+  "constraints": {
+    "valid_run_requires_runner_exit_code_zero": true,
+    "valid_run_requires_summary_success": true,
+    "valid_run_requires_contact_pass": true,
+    "valid_run_requires_final_goal_error_m_lte": 0.5,
+    "constraint_failure_penalty": 100.0,
+    "missing_metrics_base_score": 100.0
+  },
+
+  "final_score_formula": "base_score + constraint_failure_penalty_if_invalid",
+  "base_score_formula": "100*(0.4*R_norm + 0.4*T_norm + 0.2*Time_norm)",
+
+  "pilot_source": "r3_pilot_H_S1_R3_final_s31_20260729_164346",
+
+  "planner_versions": {
+    "asd": "ASD-RRT*",
+    "tp": "TP-ASD-RRT*",
+    "aco": "ACO Trackable-Safe V8"
+  },
+
+  "note": "Frozen after ASD, TP and ACO Trackable-Safe V8 all passed execution and contact acceptance. References, weights, normalization and penalty must remain unchanged throughout the formal batch."
+}

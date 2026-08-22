@@ -1,0 +1,6 @@
+float64 slope
+float64 roughness
+---
+float64 terrain_cost
+bool success
+string message

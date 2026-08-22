@@ -1,0 +1,129 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <world name="dem_inspired_benchmark_world">
+
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <scene>
+      <ambient>0.75 0.75 0.75 1</ambient>
+      <background>0.82 0.82 0.84 1</background>
+      <shadows>false</shadows>
+    </scene>
+
+    <light name="terrain_light" type="directional">
+      <cast_shadows>false</cast_shadows>
+
+      <pose>0 0 30 0 0 0</pose>
+
+      <diffuse>0.85 0.85 0.85 1</diffuse>
+      <specular>0.05 0.05 0.05 1</specular>
+
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+
+      <direction>-0.5 0.3 -1.0</direction>
+    </light>
+
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>
+          -34.500000
+          -34.500000
+          22.500000
+          0 0.48 0.78
+        </pose>
+
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+    <model name="dem_inspired_terrain">
+      <static>true</static>
+
+      <link name="terrain_link">
+
+        <collision name="terrain_collision">
+          <geometry>
+            <heightmap>
+              <uri>file:///home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/dem_terrain_hard_513.png</uri>
+
+              <size>
+                19.047619
+                30.000000
+                1.514038
+              </size>
+
+              <pos>0 0 0</pos>
+              <sampling>1</sampling>
+            </heightmap>
+          </geometry>
+
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.9</mu>
+                <mu2>0.9</mu2>
+              </ode>
+            </friction>
+
+            <contact>
+              <ode>
+                <kp>1000000</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+          </surface>
+        </collision>
+
+        <visual name="terrain_visual">
+
+          <cast_shadows>false</cast_shadows>
+
+          <geometry>
+            <heightmap>
+              <uri>file:///home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/dem_terrain_hard_513.png</uri>
+
+              <size>
+                19.047619
+                30.000000
+                1.514038
+              </size>
+
+              <pos>0 0 0</pos>
+              <sampling>1</sampling>
+
+              <!--
+                Uniform neutral surface only.
+                This is not a geographic or hillshade texture.
+              -->
+              <texture>
+                <diffuse>file:///home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/dem_uniform_gray_surface.png</diffuse>
+
+                <normal>
+                  file://media/materials/textures/flat_normal.png
+                </normal>
+
+                <size>30.000000</size>
+              </texture>
+            </heightmap>
+          </geometry>
+
+        </visual>
+
+      </link>
+    </model>
+
+  </world>
+
+</sdf>

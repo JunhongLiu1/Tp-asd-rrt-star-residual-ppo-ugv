@@ -1,0 +1,84 @@
+# ROS 2 / colcon build products
+/build/
+/install/
+/log/
+
+# Runtime and test artifacts
+/acceptance_logs/
+/diagnostics/
+/results/
+/experiment_results/
+/formal_experiments/
+/formal_experiments_v3/
+/final_score_calibration_r2/
+/final_score_calibration_r3/
+/final_score_comparisons/
+/final_score_formal_r3/
+/module31_experiment_results/
+/module32_execution_results/
+/module34_validation_results/
+/module36_vehicle_path_risk/
+/multi_goal_tp_probe/
+/thesis_results/
+/week3_reproduction/
+/week4_5_algorithm_results/
+/week6_report_figures/
+/week7_report_figures/
+/week9_report_figures/
+/analysis_datasets/
+/experiment_baselines/
+
+# Local snapshots, recovery copies, and downloaded dependencies
+/backups/
+/delivery/
+/recovery_backup/
+/recovery_radiation_plugin/
+/.localcurl/
+/.rl_deps/
+/.tmpcurl/
+/chapter4_exact_implementation_*.tar.gz
+
+# ROS bags and generated data
+*.bag
+*.db3
+*.mcap
+*.csv
+*.npy
+*.npz
+*.pkl
+*.pt
+*.pth
+*.onnx
+
+# Compiled objects and libraries
+*.o
+*.so
+*.a
+
+# Python/editor caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.vscode/
+.idea/
+*~
+
+# Local backup variants
+*.bak
+*.bak_*
+*.backup
+*.backup_*
+*.before_*
+*.module35c_backup
+
+# Accidental shell-output files at the workspace root
+/--event-handlers
+/--packages-select
+/--symlink-install
+/echo
+/else
+/fi
+/~

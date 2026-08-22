@@ -1,0 +1,14 @@
+float64 x
+float64 y
+---
+bool inside_map
+bool valid
+bool traversable
+int32 grid_row
+int32 grid_column
+int32 source_array_row
+float32 elevation_m
+float32 slope_deg
+float32 roughness_m
+float32 terrain_impedance
+string status

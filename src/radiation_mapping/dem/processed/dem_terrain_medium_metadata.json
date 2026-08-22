@@ -1,0 +1,56 @@
+{
+  "terrain_type": "DEM-inspired normalised benchmark terrain",
+  "direct_geographic_scaling": false,
+  "terrain_texture_used": false,
+  "uniform_surface_material_used": true,
+  "relative_morphology_preserved": true,
+  "source_dem": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/raw/SNEX20_QSI_DEM_3M_USCOCP_20210918_20210918.tif",
+  "source_information": {
+    "original_width_pixels": 1600,
+    "original_height_pixels": 2520,
+    "valid_width_pixels": 1600,
+    "valid_height_pixels": 2520,
+    "pixel_x_m": 3.0,
+    "pixel_y_m": 3.0,
+    "valid_percentage": 60.43328373015873,
+    "valid_envelope": {
+      "row_min": 0,
+      "row_max": 2519,
+      "column_min": 0,
+      "column_max": 1599
+    }
+  },
+  "processing": {
+    "output_samples": 513,
+    "coarse_reconstruction_samples": 129,
+    "smooth_iterations": 1,
+    "gaussian_sigma": 0.8,
+    "lower_percentile": 1.0,
+    "upper_percentile": 99.0,
+    "normalisation_min_m": 2985.9545438758555,
+    "normalisation_max_m": 3499.852974604297,
+    "nodata_fill_method": "nearest_valid_elevation",
+    "median_filter_size": 3,
+    "heightmap_bit_depth": 8
+  },
+  "gazebo": {
+    "target_x_m": 19.047619047619047,
+    "target_y_m": 30.0,
+    "requested_relief_m": 3.0,
+    "final_relief_m": 1.1927995610082123,
+    "maximum_95_percentile_slope_deg": 16.0,
+    "vertical_factor": 0.3975998536694041,
+    "heightmap_sampling": 1,
+    "slope_statistics": {
+      "slope_mean_deg": 7.086912565411962,
+      "slope_50_deg": 6.4700267518608365,
+      "slope_90_deg": 13.442668119400025,
+      "slope_95_deg": 16.00000000004402,
+      "slope_99_deg": 20.09265177913891,
+      "slope_max_deg": 23.891583896320036
+    }
+  },
+  "output_heightmap": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/dem_terrain_medium_513.png",
+  "surface_texture": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/dem_uniform_gray_surface.png",
+  "output_world": "/home/i/terrain_radiation_ws/src/radiation_mapping/worlds/module33_dem_terrain_medium.world"
+}

@@ -1,0 +1,6 @@
+float64 radiation_cost
+float64 terrain_cost
+---
+float64 fusion_cost
+bool success
+string message

@@ -1,0 +1,11 @@
+---
+string best_path_name
+int32 best_path_index
+float64 best_final_score
+float64[] path_lengths
+float64[] travel_times
+float64[] radiation_doses
+float64[] terrain_costs
+float64[] final_scores
+bool success
+string message

@@ -1,0 +1,164 @@
+{
+    "version": 8,
+    "description": "Formal pre-validation scenarios for the hard DEM with the current two-source radiation field.",
+    "defaults": {
+        "terrain": "hard",
+        "world_path": "src/radiation_mapping/worlds/module36_hard_radiation_mesh_visual_colored.world",
+        "data_directory": "src/radiation_mapping/dem/processed",
+        "radiation_profile": "R1_current_alpha6_beta4_sat8",
+        "spawn_clearance_m": 0.3,
+        "goal_tolerance_m": 0.5,
+        "start_tolerance_m": 0.75,
+        "map_fallback": {
+            "resolution_m": 0.1,
+            "origin_x_m": -9.5,
+            "origin_y_m": -15.0
+        }
+    },
+    "scenarios": {
+        "H_B1_balanced": {
+            "description": "Previously validated balanced terrain-radiation route.",
+            "start": {
+                "x": 5.134,
+                "y": 5.977,
+                "yaw": 0.0
+            },
+            "goal": {
+                "x": -1.13,
+                "y": -7.8
+            }
+        },
+        "H_R1_radiation": {
+            "description": "Radiation-focused route passing near source alpha while avoiding the excessively rough terrain encountered by the original H_R1 route.",
+            "start": {
+                "x": -7.0,
+                "y": 3.5,
+                "yaw": 0.0
+            },
+            "goal": {
+                "x": 4.0,
+                "y": 2.5
+            }
+        },
+        "H_T1_terrain": {
+            "description": "Difficult-terrain route from a stable western plateau start toward the central uneven region.",
+            "start": {
+                "x": -7.15,
+                "y": -7.25,
+                "yaw": 0.0
+            },
+            "goal": {
+                "x": 0.0,
+                "y": 0.0
+            }
+        },
+        "H_S1_R2_final": {
+            "description": "Final integrated scenario using the validated hard DEM and the stronger three-source R2 radiation field.",
+            "terrain": "hard",
+            "world_path": "src/radiation_mapping/worlds/module36_hard_radiation_mesh_visual_colored_r2.world",
+            "radiation_profile": "R2_alpha9_beta7_gamma8_sat12_wide",
+            "start": {
+                "x": 5.134,
+                "y": 5.977,
+                "yaw": 0.0
+            },
+            "goal": {
+                "x": -1.13,
+                "y": -7.8
+            },
+            "spawn_clearance_m": 0.3,
+            "goal_tolerance_m": 0.5,
+            "start_tolerance_m": 0.75
+        },
+        "H_S1_R3_final": {
+            "description": "Integrated hard-DEM scenario with the R3 four-source radiation barrier. Gamma and delta lie across the validated S1 direct corridor.",
+            "terrain": "hard",
+            "world_path": "src/radiation_mapping/worlds/module36_hard_radiation_mesh_visual_colored_r3.world",
+            "radiation_profile": "R3_alpha14_beta12_gamma30_delta24_sat10_long_range",
+            "start": {
+                "x": 5.134,
+                "y": 5.977,
+                "yaw": 0.0
+            },
+            "goal": {
+                "x": -1.13,
+                "y": -7.8
+            },
+            "spawn_clearance_m": 0.3,
+            "goal_tolerance_m": 0.5,
+            "start_tolerance_m": 0.75
+        },
+        "H_MG1_short_east": {
+            "description": "Short eastern multi-goal pilot. Designed to test whether the time penalty can improve a moderate-distance route without a large terrain or radiation trade-off.",
+            "condition": "short_east_time_sensitive",
+            "terrain": "hard",
+            "world_path": "src/radiation_mapping/worlds/module36_hard_radiation_mesh_visual_colored_r3.world",
+            "radiation_profile": "R3_alpha14_beta12_gamma30_delta24_sat10_long_range",
+            "start": {
+                "x": 5.134,
+                "y": 5.977,
+                "yaw": 0.0
+            },
+            "goal": {
+                "x": 6.55,
+                "y": -1.95
+            },
+            "spawn_clearance_m": 0.3,
+            "goal_tolerance_m": 0.5,
+            "start_tolerance_m": 0.75,
+            "pilot_target_neighbourhood": {
+                "terrain_p95": 0.20545720160007475,
+                "terrain_max": 0.22696860134601593,
+                "slope_p95_deg": 4.408978080749511
+            }
+        },
+        "H_MG2_long_south": {
+            "description": "Long southern multi-goal pilot. Designed to make accumulated travel time and path length more influential.",
+            "condition": "long_route_time_accumulation",
+            "terrain": "hard",
+            "world_path": "src/radiation_mapping/worlds/module36_hard_radiation_mesh_visual_colored_r3.world",
+            "radiation_profile": "R3_alpha14_beta12_gamma30_delta24_sat10_long_range",
+            "start": {
+                "x": 5.134,
+                "y": 5.977,
+                "yaw": 0.0
+            },
+            "goal": {
+                "x": 5.05,
+                "y": -10.45
+            },
+            "spawn_clearance_m": 0.3,
+            "goal_tolerance_m": 0.5,
+            "start_tolerance_m": 0.75,
+            "pilot_target_neighbourhood": {
+                "terrain_p95": 0.34071397185325625,
+                "terrain_max": 0.3604618012905121,
+                "slope_p95_deg": 7.38534460067749
+            }
+        },
+        "H_MG3_west_conflict": {
+            "description": "Western multi-goal pilot. Designed to expose a radiation-versus-time trade-off near the northern radiation-source region.",
+            "condition": "radiation_time_conflict",
+            "terrain": "hard",
+            "world_path": "src/radiation_mapping/worlds/module36_hard_radiation_mesh_visual_colored_r3.world",
+            "radiation_profile": "R3_alpha14_beta12_gamma30_delta24_sat10_long_range",
+            "start": {
+                "x": 5.134,
+                "y": 5.977,
+                "yaw": 0.0
+            },
+            "goal": {
+                "x": -6.45,
+                "y": 6.55
+            },
+            "spawn_clearance_m": 0.3,
+            "goal_tolerance_m": 0.5,
+            "start_tolerance_m": 0.75,
+            "pilot_target_neighbourhood": {
+                "terrain_p95": 0.27501536607742305,
+                "terrain_max": 0.35183215141296387,
+                "slope_p95_deg": 5.805349349975586
+            }
+        }
+    }
+}

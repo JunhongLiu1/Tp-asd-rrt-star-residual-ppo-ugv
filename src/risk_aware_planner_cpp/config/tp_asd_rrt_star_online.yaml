@@ -1,0 +1,124 @@
+/tp_asd_rrt_star_planner_cpp:
+  ros__parameters:
+    use_sim_time: true
+
+    terrain_topic: /terrain_impedance_map
+    radiation_topic: /risk_map
+    traversability_topic: /terrain_traversability_mask
+    odom_topic: /odometry/filtered
+    goal_topic: /goal_pose
+    path_topic: /tp_asd_rrt_star_cpp_path
+    status_topic: /tp_asd_rrt_star_cpp_status
+    metrics_topic: /tp_asd_rrt_star_cpp_metrics
+    map_frame: map
+
+    require_traversability_map: false
+    map_timeout_sec: 5.0
+    odom_timeout_sec: 1.0
+    odom_tf_timeout_sec: 0.2
+
+    replan_rate_hz: 1.0
+    replan_min_distance_m: 0.25
+    replan_min_interval_sec: 1.0
+    replan_on_map_update: true
+
+    step_size: 0.45
+    search_radius: 1.0
+    goal_radius: 0.5
+    max_iterations: 1800
+    planning_timeout_sec: 2.0
+    goal_sample_rate: 0.12
+    random_seed: 31
+    stop_on_first_feasible: false
+
+    # TP-ASD sampling/APF. Set false for exact legacy uniform+goal RRT* draws
+    # and legacy steer behavior with the same random seed.
+    enable_adaptive_sampling: true
+    sampling_region_rows: 8
+    sampling_region_cols: 8
+    risk_sample_rate: 0.35
+    min_uniform_sample_rate: 0.15
+    min_goal_sample_rate: 0.05
+    max_goal_sample_rate: 0.45
+    min_risk_sample_rate: 0.10
+    max_risk_sample_rate: 0.70
+    low_risk_exponent: 3.0
+    region_goal_distance_gain: 0.25
+    gradient_epsilon: 0.25
+    random_direction_weight: 0.55
+    goal_attraction_weight: 0.25
+    risk_repulsion_weight: 0.35
+    adaptation_interval: 100
+    stagnation_iterations: 100
+    adaptation_step: 0.05
+
+    terrain_input_max: 100.0
+    radiation_input_max: 100.0
+    # 未观测区域允许探索，但赋予保守的中低风险代价；不是“零风险”。
+    unknown_radiation_value: 25.0
+    radiation_hard_threshold: 100.0
+    terrain_hard_threshold: 100.0
+    traversability_threshold: 50.0
+    edge_sample_resolution: 0.2
+
+    reference_length_m: 35.53606325105835
+    reference_time_s: 444.20079063822936
+    radiation_reference_usv_h: 8.0
+    radiation_dose_hard_threshold_usv_h: 8.0
+    unknown_dose_rate_usv_h: 0.25
+    nominal_speed_m_s: 0.08
+    minimum_speed_factor: 0.3
+    terrain_speed_penalty_gain: 0.7
+
+    distance_weight: 0.2
+    terrain_weight: 0.4
+    radiation_weight: 0.4
+    time_penalty_lambda: 0.25
+    include_time_penalty: true
+
+/tp_asd_rrt_star_path_follower_cpp:
+  ros__parameters:
+    use_sim_time: true
+
+    path_topic: /tp_asd_rrt_star_cpp_path
+    odom_topic: /odometry/filtered
+    cmd_vel_topic: /control/base_cmd
+    e_stop_topic: /e_stop
+    status_topic: /tp_asd_rrt_star_cpp_follower_status
+    map_frame: map
+
+    control_rate_hz: 10.0
+    lookahead_distance: 0.70
+    min_lookahead_distance: 0.45
+    max_lookahead_distance: 1.20
+    lookahead_time: 1.50
+    goal_tolerance: 0.35
+    goal_slowdown_distance: 1.50
+    max_path_deviation: 1.50
+    # Path 是有生命周期的计划，不是必须持续刷新的传感器流。
+    path_timeout_sec: 0.0
+    odom_timeout_sec: 1.0
+    tf_timeout_sec: 0.2
+    max_linear_speed: 0.20
+    max_angular_speed: 0.80
+    minimum_tracking_speed: 0.04
+    curvature_speed_gain: 1.50
+    rotate_in_place_angular_gain: 1.50
+    terrain_topic: /terrain_impedance_map
+    terrain_speed_gain: 0.70
+    metrics_topic: /control/pure_pursuit_metrics
+    enable_velocity_pid: true
+    # Reset I/D history after a paused or discontinuous simulation clock.
+    pid_max_dt_sec: 0.50
+    linear_pid:
+      kp: 0.80
+      ki: 0.10
+      kd: 0.0
+      integral_limit: 0.30
+      correction_limit: 0.10
+    angular_pid:
+      kp: 0.50
+      ki: 0.05
+      kd: 0.0
+      integral_limit: 0.50
+      correction_limit: 0.30

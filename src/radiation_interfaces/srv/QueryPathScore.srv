@@ -1,0 +1,7 @@
+float64 path_length
+float64 path_radiation_cost
+float64 terrain_cost
+---
+float64 final_score
+bool success
+string message

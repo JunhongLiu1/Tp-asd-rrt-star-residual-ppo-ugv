@@ -1,0 +1,14 @@
+geometry_msgs/PoseStamped goal
+---
+bool success
+string failure_code
+string message
+nav_msgs/Path path
+uint64 risk_map_version
+float64 risk_map_age_sec
+float64 planning_time_sec
+uint64 iterations
+---
+string state
+float64 elapsed_sec
+uint64 iterations

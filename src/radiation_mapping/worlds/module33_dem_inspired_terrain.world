@@ -1,0 +1,100 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <world name="dem_inspired_benchmark_world">
+
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <scene>
+      <ambient>0.55 0.55 0.55 1</ambient>
+      <background>0.8 0.8 0.82 1</background>
+      <shadows>true</shadows>
+    </scene>
+
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 30 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <specular>0.15 0.15 0.15 1</specular>
+      <direction>-0.5 0.3 -1.0</direction>
+    </light>
+
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>
+          -36.0000
+          -36.0000
+          22.5000
+          0 0.48 0.78
+        </pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+
+    <model name="dem_inspired_terrain">
+      <static>true</static>
+
+      <link name="terrain_link">
+
+        <collision name="terrain_collision">
+          <geometry>
+            <heightmap>
+              <uri>file:///home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/dem_inspired_heightmap_257.png</uri>
+
+              <size>
+                19.047619
+                30.000000
+                0.620761
+              </size>
+
+              <pos>0 0 0</pos>
+              <sampling>1</sampling>
+            </heightmap>
+          </geometry>
+
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.9</mu>
+                <mu2>0.9</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+
+        <visual name="terrain_visual">
+          <geometry>
+            <heightmap>
+              <uri>file:///home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/dem_inspired_heightmap_257.png</uri>
+
+              <size>
+                19.047619
+                30.000000
+                0.620761
+              </size>
+
+              <pos>0 0 0</pos>
+              <sampling>1</sampling>
+            </heightmap>
+          </geometry>
+
+          <!-- Uniform material only. No terrain image texture. -->
+          <material>
+            <ambient>0.42 0.45 0.40 1</ambient>
+            <diffuse>0.52 0.55 0.48 1</diffuse>
+            <specular>0.05 0.05 0.05 1</specular>
+          </material>
+        </visual>
+
+      </link>
+    </model>
+
+  </world>
+
+</sdf>

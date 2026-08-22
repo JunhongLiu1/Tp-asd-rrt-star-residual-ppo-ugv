@@ -1,0 +1,15 @@
+{
+  "batch_size": 64,
+  "checkpoint_dir": "checkpoints/residual_ppo_budget_cpu",
+  "checkpoint_freq": 5000,
+  "clip_range": 0.2,
+  "device": "cpu",
+  "ent_coef": 0.0,
+  "gae_lambda": 0.95,
+  "gamma": 0.99,
+  "learning_rate": 0.0003,
+  "n_epochs": 10,
+  "n_steps": 512,
+  "seed": 31,
+  "total_timesteps": 20000
+}

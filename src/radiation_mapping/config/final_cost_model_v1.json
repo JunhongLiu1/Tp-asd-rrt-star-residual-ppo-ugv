@@ -1,0 +1,59 @@
+{
+  "version": "cost_model_v1_0",
+  "created_at": "2026-07-11T10:35:07.604447",
+  "terrain_baseline": "terrain_v1_0",
+  "description": "Common normalized path-planning cost model for ASD-RRT*, ACO and Time-Penalised ASD-RRT*.",
+  "normalization": {
+    "reference_length_m": 35.53606325105835,
+    "reference_length_rule": "maximum diagonal of frozen terrain maps",
+    "reference_time_s": 444.20079063822936,
+    "terrain_cell_cost_min": 0.0,
+    "terrain_cell_cost_max": 1.0,
+    "radiation_dose_rate_reference_usv_h": 8.0,
+    "radiation_reference_note": "Simulation normalization reference only; not a regulatory safety limit.",
+    "clamp_cell_costs": true,
+    "clamp_path_costs": false
+  },
+  "time_model": {
+    "nominal_speed_m_s": 0.08,
+    "minimum_speed_factor": 0.3,
+    "terrain_speed_penalty_gain": 0.7,
+    "formula": "v = nominal_speed * max(minimum_speed_factor, 1 - terrain_speed_penalty_gain * terrain_impedance)"
+  },
+  "base_cost_profiles": {
+    "terrain_dominant": {
+      "distance_weight": 0.2,
+      "terrain_weight": 0.6,
+      "radiation_weight": 0.2
+    },
+    "balanced": {
+      "distance_weight": 0.2,
+      "terrain_weight": 0.4,
+      "radiation_weight": 0.4
+    },
+    "radiation_dominant": {
+      "distance_weight": 0.2,
+      "terrain_weight": 0.2,
+      "radiation_weight": 0.6
+    }
+  },
+  "time_penalised_extension": {
+    "algorithm": "time_penalised_asd_rrt_star",
+    "time_penalty_lambda": 0.25,
+    "formula": "J_total = J_base + time_penalty_lambda * J_time"
+  },
+  "evaluation_only_metrics": [
+    "planning_time_s",
+    "path_smoothness",
+    "success",
+    "maximum_slope_deg",
+    "executed_path_length_m",
+    "actual_execution_time_s",
+    "actual_accumulated_dose"
+  ],
+  "terrain_diagonal_by_level_m": {
+    "easy": 35.53606325105835,
+    "medium": 35.53606325105835,
+    "hard": 35.53606325105835
+  }
+}

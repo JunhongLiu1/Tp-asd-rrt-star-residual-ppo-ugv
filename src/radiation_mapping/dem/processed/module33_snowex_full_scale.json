@@ -1,0 +1,41 @@
+{
+  "processing": {
+    "cropping_used": false,
+    "complete_source_extent_retained": true,
+    "resampled_raster_size": [
+      513,
+      513
+    ]
+  },
+  "input_dem": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/raw/SNEX20_QSI_DEM_3M_USCOCP_20210918_20210918.tif",
+  "output_dem": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/snowex_full_zero_513.tif",
+  "output_hillshade": "/home/i/terrain_radiation_ws/src/radiation_mapping/dem/preview/snowex_full_hillshade.png",
+  "output_world": "/home/i/terrain_radiation_ws/src/radiation_mapping/worlds/module33_snowex_full_scaled.world",
+  "source": {
+    "raster_width": 1600,
+    "raster_height": 2520,
+    "pixel_x_m": 3.0,
+    "pixel_y_m": 3.0,
+    "source_width_m": 4800.0,
+    "source_height_m": 7560.0
+  },
+  "elevation": {
+    "original_min_m": 2949.516845703125,
+    "original_max_m": 3612.556396484375,
+    "original_mean_m": 3212.618408203125,
+    "processed_min_m": 0.0,
+    "processed_max_m": 663.03955078125,
+    "elevation_relief_m": 663.03955078125,
+    "valid_data_percentage": 62.13155804825036,
+    "external_nodata_handling": "set_to_minimum_elevation",
+    "small_hole_fill_distance_pixels": 3,
+    "resampling_method": "bilinear"
+  },
+  "gazebo": {
+    "uniform_scale": 0.0026455026455026454,
+    "target_x_m": 12.698412698412698,
+    "target_y_m": 20.0,
+    "target_z_m": 1.7540728856646823
+  },
+  "heightmap_sampling": 1
+}

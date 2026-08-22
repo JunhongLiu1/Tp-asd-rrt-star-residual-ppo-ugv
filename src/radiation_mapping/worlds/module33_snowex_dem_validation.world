@@ -1,0 +1,92 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+
+  <world name="module33_snowex_dem_world">
+
+    <include>
+      <uri>model://sun</uri>
+    </include>
+
+    <gravity>0 0 -9.81</gravity>
+
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <scene>
+      <ambient>0.6 0.6 0.6 1</ambient>
+      <background>0.8 0.8 0.8 1</background>
+      <shadows>true</shadows>
+    </scene>
+    
+    <gui fullscreen="0">
+      <camera name="user_camera">
+        <pose>-30 -30 20 0 0.45 0.78</pose>
+        <view_controller>orbit</view_controller>
+      </camera>
+    </gui>
+      
+    <model name="snowex_dem_terrain">
+      <static>true</static>
+
+      <link name="terrain_link">
+
+        <collision name="terrain_collision">
+          <geometry>
+            <heightmap>
+
+              <uri>
+                file:///home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/snowex_dem_zero_257.tif
+              </uri>
+
+              <size>40 40 10</size>
+              <pos>0 0 0</pos>
+              <sampling>1</sampling>
+
+            </heightmap>
+          </geometry>
+
+          <surface>
+            <friction>
+              <ode>
+                <mu>0.9</mu>
+                <mu2>0.9</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+
+        <visual name="terrain_visual">
+          <geometry>
+            <heightmap>
+
+              <uri>
+                file:///home/i/terrain_radiation_ws/src/radiation_mapping/dem/processed/snowex_dem_zero_257.tif
+              </uri>
+
+              <size>40 40 10</size>
+              <pos>0 0 0</pos>
+              <sampling>1</sampling>
+
+              <texture>
+                <diffuse>
+                  file://media/materials/textures/dirt_diffusespecular.png
+                </diffuse>
+                <normal>
+                  file://media/materials/textures/flat_normal.png
+                </normal>
+                <size>2</size>
+              </texture>
+
+            </heightmap>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+  </world>
+
+</sdf>
