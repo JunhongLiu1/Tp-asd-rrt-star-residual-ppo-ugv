@@ -26,6 +26,8 @@ setup(
             ),
             glob('dem/processed/*.npz')
             + glob('dem/processed/*.json')
+            + glob('dem/processed/*.png')
+            + glob('dem/processed/*.stl')
         ),
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),

@@ -1,0 +1,27 @@
+{
+  "dataset": "final_results_20260822",
+  "files": {
+    "claims.json": {
+      "bytes": 840,
+      "sha256": "a4bf1f2cf2100d8c7b4e8ac83357166027d7ccbec916888af6a1e60b72d7b704"
+    },
+    "controller_stage_summary.csv": {
+      "bytes": 765,
+      "sha256": "fb39bfa72eeb5459d0d548d21270676a52066fffd23824fde5e25736451ad22a"
+    },
+    "pid_straight_ab.csv": {
+      "bytes": 394,
+      "sha256": "7cd91099ec0bb6a77e3a999add001000e8d85503a04755c650d0dc7bdf70d858"
+    },
+    "planner_paired_summary.csv": {
+      "bytes": 730,
+      "sha256": "8cd8efb8bf47e9229d637f93d2e9e7bfa6ac1edd5479c8294820ec9e50182f33"
+    }
+  },
+  "generated_from": [
+    "acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json",
+    "acceptance_logs/rl_ppo_20260822/retrain50k_ab_evaluation_100seeds.json",
+    "acceptance_logs/residual_gazebo_matrix_20260822/summary.json",
+    "acceptance_logs/pid_supplemental_20260822/report.json"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "actions": [
+    [0.3140999972820282, -0.006690626032650471],
+    [0.3189373314380646, -0.020332220941781998],
+    [0.3235355019569397, -0.03391037508845329],
+    [0.3278708755970001, -0.04738467186689377],
+    [0.33192330598831177, -0.060716643929481506]
+  ],
+  "artifact_label": "NON_ROS_ISOLATED_WORKER_SMOKE_NOT_GAZEBO_APPROVAL",
+  "checkpoint": "retrain50k_checkpoints/residual_ppo_final.zip",
+  "checkpoint_sha256": "8233e2504909a97844cb3f97c72ab7c7756b1762a997a48168904256c2f1c742",
+  "contract_validated": true,
+  "deployable": false,
+  "eager_start_handshake": true,
+  "hard_prediction_timeout_sec": 0.2,
+  "orphan_worker_after_close": false,
+  "parent_imported_sb3_or_torch": false,
+  "requests": 5,
+  "worker_interpreter": "/usr/bin/python3 -S",
+  "worker_pythonpath_included_rl_deps": true
+}

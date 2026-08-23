@@ -1,0 +1,45 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="flat_radiation_test_world">
+    <gravity>0 0 -9.81</gravity>
+    <plugin name="gazebo_ros_state" filename="libgazebo_ros_state.so">
+      <ros><namespace>/</namespace></ros>
+      <update_rate>10.0</update_rate>
+    </plugin>
+    <physics name="default_physics" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene><shadows>false</shadows></scene>
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <model name="radiation_source_alpha">
+      <static>true</static><pose>-2.5 3.5 1.2 0 0 0</pose>
+      <link name="source_link"><visual name="source_visual"><geometry><sphere><radius>0.3</radius></sphere></geometry></visual></link>
+    </model>
+    <model name="radiation_source_beta">
+      <static>true</static><pose>4.0 -4.5 1.2 0 0 0</pose>
+      <link name="source_link"><visual name="source_visual"><geometry><sphere><radius>0.3</radius></sphere></geometry></visual></link>
+    </model>
+    <plugin name="radiation_world_plugin" filename="libgazebo_radiation_world_plugin.so">
+      <ros><namespace>/</namespace></ros>
+      <target_model>husky</target_model>
+      <background_dose_rate_usv_h>0.05</background_dose_rate_usv_h>
+      <publish_rate_hz>10.0</publish_rate_hz>
+      <use_3d_distance>false</use_3d_distance>
+      <publish_radiation_map>true</publish_radiation_map>
+      <terrain_map_topic>/terrain_impedance_map</terrain_map_topic>
+      <radiation_map_topic>/ground_truth/radiation_map</radiation_map_topic>
+      <radiation_map_saturation_usv_h>8.0</radiation_map_saturation_usv_h>
+      <radiation_map_use_3d_distance>false</radiation_map_use_3d_distance>
+      <radiation_map_z_m>0.0</radiation_map_z_m>
+      <dose_rate_topic>/radiation/dose_rate_usv_h</dose_rate_topic>
+      <accumulated_dose_topic>/radiation/accumulated_dose_usv</accumulated_dose_topic>
+      <nearest_distance_topic>/radiation/nearest_source_distance_m</nearest_distance_topic>
+      <source><model_name>radiation_source_alpha</model_name><strength_usv_h_m2>6.0</strength_usv_h_m2><softening_radius_m>0.60</softening_radius_m><attenuation_per_m>0.04</attenuation_per_m></source>
+      <source><model_name>radiation_source_beta</model_name><strength_usv_h_m2>4.0</strength_usv_h_m2><softening_radius_m>0.80</softening_radius_m><attenuation_per_m>0.04</attenuation_per_m></source>
+    </plugin>
+  </world>
+</sdf>

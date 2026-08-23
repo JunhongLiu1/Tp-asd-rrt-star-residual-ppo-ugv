@@ -1,0 +1,31 @@
+{
+  "claims": [
+    {
+      "accepted": true,
+      "source": "acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json",
+      "stage": "planner_synthetic"
+    },
+    {
+      "accepted": true,
+      "source": "acceptance_logs/rl_ppo_20260822/retrain50k_ab_evaluation_100seeds.json",
+      "stage": "ppo_surrogate"
+    },
+    {
+      "accepted": true,
+      "source": "acceptance_logs/rl_ppo_20260822/learned_gazebo_smoke_valid",
+      "stage": "ppo_gazebo_short_smoke"
+    },
+    {
+      "accepted": false,
+      "source": "acceptance_logs/residual_gazebo_matrix_20260822/summary.json",
+      "stage": "ppo_gazebo_stress_performance"
+    },
+    {
+      "accepted": false,
+      "source": "not_tested",
+      "stage": "physical_robot_deployment"
+    }
+  ],
+  "dataset_label": "FINAL_RESULTS_WITH_STAGE_SEPARATION",
+  "deployable": false
+}

@@ -1,0 +1,7 @@
+scenario,variant,successes,runs,mean_cost,mean_time_us,mean_iterations,mean_nodes,source
+open,legacy,30,30,9.5388003,112.16,55.23,56.23,acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json
+open,adaptive,30,30,9.3412637,114.97,47.3,48.3,acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json
+wall,legacy,30,30,10.6021327,157.18,80.67,67.1,acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json
+wall,adaptive,30,30,10.6994957,157.6,78.87,62.27,acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json
+gradient,legacy,30,30,18.4621133,118.6,55.23,56.23,acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json
+gradient,adaptive,30,30,18.48108,122.88,50.93,51.93,acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json

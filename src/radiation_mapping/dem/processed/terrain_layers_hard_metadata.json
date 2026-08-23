@@ -1,0 +1,13 @@
+{
+  "grid": {
+    "resolution_m": 0.1,
+    "width_cells": 190,
+    "height_cells": 300,
+    "origin_x_m": -9.5238095,
+    "origin_y_m": -15.0
+  },
+  "cost_model": {
+    "slope_cost_limit_deg": 30.0,
+    "roughness_cost_limit_m": 0.08
+  }
+}

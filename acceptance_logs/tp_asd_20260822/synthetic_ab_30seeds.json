@@ -1,0 +1,37 @@
+{
+  "experiment": "TP-ASD synthetic paired A/B",
+  "date": "2026-08-22",
+  "data_labels": {
+    "legacy": "legacy risk-weighted RRT* baseline (adaptive sampling disabled)",
+    "adaptive": "TP-ASD-RRT* mechanism candidate (adaptive sampling enabled)",
+    "scope": "synthetic mechanism acceptance; not Gazebo or performance superiority"
+  },
+  "seeds": "31..60 (30 paired seeds)",
+  "parameters": {
+    "start": [1.0, 5.0],
+    "goal": [9.0, 5.0],
+    "bounds": [0.0, 10.0, 0.0, 10.0],
+    "max_iterations": 900,
+    "adaptive_default_under_test": true,
+    "maps": ["open", "wall", "gradient"]
+  },
+  "source": "temporary /tmp/tpasd_ab.cpp, planner_core source mtime 2026-08-22 10:14:05 -0700",
+  "results": {
+    "open": {
+      "legacy": {"success": "30/30", "mean_cost": 9.5388003, "mean_time_us": 112.16, "mean_iterations": 55.23, "mean_nodes": 56.23, "samples": {"uniform": 1447, "goal": 210, "risk": 0, "guided": 0, "adaptations": 0}},
+      "adaptive": {"success": "30/30", "mean_cost": 9.3412637, "mean_time_us": 114.97, "mean_iterations": 47.30, "mean_nodes": 48.30, "samples": {"uniform": 760, "goal": 167, "risk": 492, "guided": 1419, "adaptations": 0}},
+      "paired_delta_adaptive_minus_legacy": {"cost": -0.1975366, "time_us": 2.81, "nodes": -7.93}
+    },
+    "wall": {
+      "legacy": {"success": "30/30", "mean_cost": 10.6021327, "mean_time_us": 157.18, "mean_iterations": 80.67, "mean_nodes": 67.10, "samples": {"uniform": 2107, "goal": 313, "risk": 0, "guided": 0, "adaptations": 0}},
+      "adaptive": {"success": "30/30", "mean_cost": 10.6994957, "mean_time_us": 157.60, "mean_iterations": 78.87, "mean_nodes": 62.27, "samples": {"uniform": 1276, "goal": 278, "risk": 812, "guided": 2366, "adaptations": 5}},
+      "paired_delta_adaptive_minus_legacy": {"cost": 0.0973630, "time_us": 0.42, "nodes": -4.83}
+    },
+    "gradient": {
+      "legacy": {"success": "30/30", "mean_cost": 18.4621133, "mean_time_us": 118.60, "mean_iterations": 55.23, "mean_nodes": 56.23, "samples": {"uniform": 1447, "goal": 210, "risk": 0, "guided": 0, "adaptations": 0}},
+      "adaptive": {"success": "30/30", "mean_cost": 18.4810800, "mean_time_us": 122.88, "mean_iterations": 50.93, "mean_nodes": 51.93, "samples": {"uniform": 834, "goal": 181, "risk": 513, "guided": 1528, "adaptations": 0}},
+      "paired_delta_adaptive_minus_legacy": {"cost": 0.0189667, "time_us": 4.28, "nodes": -4.30}
+    }
+  },
+  "interpretation": "All paired runs succeeded. Adaptive mode produced nonzero risk/guided sampling and fewer nodes; cost is not uniformly improved (wall/gradient slightly higher), so this is a mechanism acceptance result, not a performance claim."
+}

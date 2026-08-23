@@ -1,5 +1,10 @@
 # TP-ASD-RRT* + Residual PPO 风险感知 UGV
 
+最终分阶段验收结论见 [`FINAL_VALIDATION_REPORT.md`](FINAL_VALIDATION_REPORT.md)，
+GitHub 上传范围见 [`GITHUB_UPLOAD_MANIFEST.md`](GITHUB_UPLOAD_MANIFEST.md)。代理环境
+PPO 验收与短程 Gazebo smoke 已通过，但扩展 hard-terrain Gazebo 性能矩阵未通过，
+当前 checkpoint 不可用于实体部署。
+
 本仓库是 ROS 2 Foxy 下的最终交付版本，只包含当前风险感知移动机器人系统。主链路为：地形/辐射感知 → 在线风险地图 → 路径规划 → 路径跟踪与 PID → Residual PPO 修正 → Safety Gate → `/cmd_vel`。
 
 ## 正式算法名称

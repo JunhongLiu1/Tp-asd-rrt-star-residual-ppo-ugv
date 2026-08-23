@@ -1,0 +1,5 @@
+environment,variant,runs,success_rate,mean_duration,duration_unit,mean_return,negative_commands,safety_terminations,worker_fault_latches,source
+deterministic_surrogate,zero_residual,100,1.0,269.15,control_steps,-62.41304747789682,0,0,0,acceptance_logs/rl_ppo_20260822/retrain50k_ab_evaluation_100seeds.json
+deterministic_surrogate,ppo_50k,100,1.0,196.47,control_steps,-28.01779925612384,0,0,0,acceptance_logs/rl_ppo_20260822/retrain50k_ab_evaluation_100seeds.json
+gazebo_hard_terrain_fixed_path_stress,zero,6,0.16666666666666666,74.38958209183359,seconds,,0,0,0,acceptance_logs/residual_gazebo_matrix_20260822/summary.json
+gazebo_hard_terrain_fixed_path_stress,ppo,6,0.0,75.87357343699993,seconds,,0,0,0,acceptance_logs/residual_gazebo_matrix_20260822/summary.json

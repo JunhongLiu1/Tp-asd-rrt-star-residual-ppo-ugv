@@ -1,0 +1,95 @@
+{
+  "artifact_label": "AUDITED_OFFLINE_ARTIFACT_NOT_GAZEBO_APPROVAL",
+  "checkpoint": "/home/i/terrain_radiation_ws/acceptance_logs/rl_ppo_20260822/retrain50k_checkpoints/residual_ppo_final.zip",
+  "checkpoint_sha256": "8233e2504909a97844cb3f97c72ab7c7756b1762a997a48168904256c2f1c742",
+  "contract_validation_passed": true,
+  "deployable": false,
+  "manifest": "/home/i/terrain_radiation_ws/acceptance_logs/rl_ppo_20260822/retrain50k_checkpoints/training_manifest.json",
+  "manifest_sha256": "6ffa9bda380c2156f453c2479ad0d87dd8c9a85a9ba655cf65468cfecc8298c5",
+  "model_audit": {
+    "action_space": {
+      "dtype": "float32",
+      "high": [
+        1.0,
+        1.0
+      ],
+      "low": [
+        -1.0,
+        -1.0
+      ],
+      "shape": [
+        2
+      ]
+    },
+    "actual_num_timesteps": 50176,
+    "configured_total_timesteps": 50000,
+    "expected_rollout_timesteps": 50176,
+    "observation_space": {
+      "dtype": "float32",
+      "high": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "low": [
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0,
+        -1.0
+      ],
+      "shape": [
+        14
+      ]
+    },
+    "seed": 47,
+    "training_hyperparameters_match": true
+  },
+  "runtime_versions": {
+    "gymnasium": "0.29.1",
+    "stable-baselines3": "2.3.2",
+    "torch": "2.3.1+cpu"
+  },
+  "training_config": {
+    "batch_size": 64,
+    "checkpoint_dir": "acceptance_logs/rl_ppo_20260822/retrain50k_checkpoints",
+    "checkpoint_freq": 10000,
+    "clip_range": 0.2,
+    "device": "cpu",
+    "ent_coef": 0.001,
+    "gae_lambda": 0.95,
+    "gamma": 0.99,
+    "learning_rate": 0.0003,
+    "n_epochs": 10,
+    "n_steps": 1024,
+    "seed": 47,
+    "total_timesteps": 50000
+  },
+  "training_config_path": "/home/i/terrain_radiation_ws/acceptance_logs/rl_ppo_20260822/retrain50k_checkpoints/training_config.json",
+  "training_config_sha256": "1a063420614ad56827242ba7d02d244c5b9c186f8e48d914d1ae98f06ba1d523",
+  "validator_result": {
+    "checkpoint": "/home/i/terrain_radiation_ws/acceptance_logs/rl_ppo_20260822/retrain50k_checkpoints/residual_ppo_final.zip",
+    "manifest": "/home/i/terrain_radiation_ws/acceptance_logs/rl_ppo_20260822/retrain50k_checkpoints/training_manifest.json",
+    "sha256": "8233e2504909a97844cb3f97c72ab7c7756b1762a997a48168904256c2f1c742"
+  }
+}

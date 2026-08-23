@@ -9,6 +9,7 @@ import sys
 
 from .errors import OptionalDependencyError
 from .gym_compat import make_gym_env
+from .observation import OBSERVATION_FIELDS
 from .policy import load_policy
 from .policy import ZeroResidualPolicy
 
@@ -77,6 +78,37 @@ def validate_action(action):
     return parsed
 
 
+def validate_observation(observation):
+    """Return the normalized observation or fail before policy inference."""
+    try:
+        values = tuple(observation)
+    except (TypeError, ValueError) as exception:
+        raise EvaluationFailure(
+            "environment observation is not iterable"
+        ) from exception
+    expected_size = len(OBSERVATION_FIELDS)
+    if len(values) != expected_size:
+        raise EvaluationFailure(
+            "environment observation must contain exactly " +
+            str(expected_size) + " values"
+        )
+    try:
+        parsed = tuple(float(value) for value in values)
+    except (TypeError, ValueError, OverflowError) as exception:
+        raise EvaluationFailure(
+            "environment observation is not numeric"
+        ) from exception
+    if not all(math.isfinite(value) for value in parsed):
+        raise EvaluationFailure(
+            "environment observation contains a non-finite value"
+        )
+    if any(abs(value) > 1.0 for value in parsed):
+        raise EvaluationFailure(
+            "environment observation is outside normalized bounds"
+        )
+    return parsed
+
+
 def evaluate_policy(policy, environment, config=EvaluationConfig()):
     """Evaluate a policy with hard finite/bounds checks on every action."""
     episode_returns = []
@@ -92,6 +124,7 @@ def evaluate_policy(policy, environment, config=EvaluationConfig()):
         observation, unused_info = environment.reset(
             seed=config.seed + episode)
         del unused_info
+        observation = validate_observation(observation)
         episode_return = 0.0
         for step in range(1, config.max_steps_per_episode + 1):
             try:
@@ -109,6 +142,7 @@ def evaluate_policy(policy, environment, config=EvaluationConfig()):
             observation, reward, terminated, truncated, info = (
                 environment.step(action)
             )
+            observation = validate_observation(observation)
             reward = float(reward)
             if not math.isfinite(reward):
                 raise EvaluationFailure(

@@ -235,6 +235,9 @@ false. Invalid execution returns status 2, a valid but rejected A/B returns 3,
 and accepted surrogate A/B returns 0. `--no-zero-baseline` performs execution
 checks only and leaves `acceptance_passed` null. Non-finite, malformed, or
 out-of-`[-1, 1]` actions are rejected before stepping the environment.
+Malformed, non-finite, or out-of-range 14-value observations are likewise
+rejected before every policy inference, so broken environment output cannot
+silently contaminate an acceptance result.
 Successful acceptance still sets `deployable` to `false` and carries the
 `SMOKE_ONLY_NOT_DEPLOYABLE` label. `--stochastic` is available only for
 explicit diagnostic runs.

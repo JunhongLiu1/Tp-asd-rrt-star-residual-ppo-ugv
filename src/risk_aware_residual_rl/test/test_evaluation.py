@@ -11,6 +11,7 @@ from risk_aware_residual_rl.evaluation import compare_against_zero_baseline
 from risk_aware_residual_rl.evaluation import evaluate_policy
 from risk_aware_residual_rl.evaluation import main as evaluation_main
 from risk_aware_residual_rl.evaluation import validate_action
+from risk_aware_residual_rl.evaluation import validate_observation
 from risk_aware_residual_rl.observation import OBSERVATION_FIELDS
 
 
@@ -82,6 +83,28 @@ def test_action_validation_fails_nonfinite_or_out_of_bounds(action, message):
     with pytest.raises(EvaluationFailure) as error:
         validate_action(action)
     assert message in str(error.value)
+
+
+@pytest.mark.parametrize(
+    "observation, message",
+    [
+        ((0.0,) * 13, "exactly 14"),
+        ((0.0,) * 13 + (math.nan,), "non-finite"),
+        ((0.0,) * 13 + (1.0001,), "outside normalized bounds"),
+        (None, "not iterable"),
+    ],
+)
+def test_observation_validation_fails_malformed_outputs(
+    observation, message
+):
+    with pytest.raises(EvaluationFailure) as error:
+        validate_observation(observation)
+    assert message in str(error.value)
+
+
+def test_observation_validation_accepts_normalized_contract():
+    observation = tuple(index / 14.0 for index in range(14))
+    assert validate_observation(observation) == observation
 
 
 def test_cli_writes_json_with_mock_policy_and_no_sb3(tmp_path, capsys):
