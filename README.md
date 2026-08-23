@@ -1,10 +1,5 @@
 # TP-ASD-RRT* + Residual PPO 风险感知 UGV
 
-最终分阶段验收结论见 [`FINAL_VALIDATION_REPORT.md`](FINAL_VALIDATION_REPORT.md)，
-GitHub 上传范围见 [`GITHUB_UPLOAD_MANIFEST.md`](GITHUB_UPLOAD_MANIFEST.md)。代理环境
-PPO 验收与短程 Gazebo smoke 已通过，但扩展 hard-terrain Gazebo 性能矩阵未通过，
-当前 checkpoint 不可用于实体部署。
-
 本仓库是 ROS 2 Foxy 下的最终交付版本，只包含当前风险感知移动机器人系统。主链路为：地形/辐射感知 → 在线风险地图 → 路径规划 → 路径跟踪与 PID → Residual PPO 修正 → Safety Gate → `/cmd_vel`。
 
 ## 正式算法名称
@@ -38,7 +33,3 @@ colcon test-result --verbose
 ```
 
 规划器启动参数和运行方式见 `src/risk_aware_planner_cpp/README.md`；Residual PPO 的训练、评估和安全契约见 `src/risk_aware_residual_rl/README.md`。
-
-## 交付边界
-
-仓库不包含旧 ACO/APF/Python RRT* 实现、周次演示、历史实验脚本、实验结果、构建产物、ROS bag、依赖缓存或模型 checkpoint。模型部署时必须单独提供通过 SHA256 allowlist 与 manifest 校验的 checkpoint。
