@@ -22,6 +22,30 @@
 - `src/radiation_mapping/`：正式地形/辐射节点、Gazebo 启动文件、配置和最终 world。
 - `src/gazebo_radiation_plugins/`：Gazebo 辐射场插件。
 - `src/radiation_interfaces/`：系统使用的 ROS 消息、服务和 action 接口。
+- `tools/`：Gazebo 试验、验收结果分析和 DEM 资产重建工具。
+
+## 辅助验证工具
+
+- `tools/dynamic_radiation_e2e.py`：移动 Gazebo 辐射源，验证风险地图更新、路径失效停车、重新规划与恢复的闭环行为。
+- `tools/analyze_pi_difficult_scenarios.py`：汇总困难场景下的 PI 开关对比结果，并生成 CSV/JSON 报告。
+- `tools/analyze_pid_supplemental_tests.py`：读取补充 ROS 2 bag，汇总转弯、急停和 PID 对比指标。
+- `tools/reconstruct_dem_assets.py`：从保留的地形 NPZ 数据重建 Gazebo 高程图、表面图和 STL 网格。
+
+动态辐射闭环验收示例：
+
+```bash
+source /opt/ros/foxy/setup.bash
+source install/setup.bash
+python3 tools/dynamic_radiation_e2e.py --output acceptance_logs/dynamic_radiation_e2e
+```
+
+DEM 资产重建示例：
+
+```bash
+python3 tools/reconstruct_dem_assets.py \
+  --npz src/radiation_mapping/dem/processed/terrain_layers_hard.npz \
+  --output-dir /tmp/reconstructed_dem
+```
 
 ## 构建与测试
 
