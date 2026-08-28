@@ -1,49 +1,20 @@
-# C++ TP-ASD-RRT* planner
+# C++ TP-ASD-RRT* 规划器
 
-The planner keeps the existing RRT* parent selection, rewiring, feasibility,
-and terrain-speed/time/radiation-dose edge cost. With
-`enable_adaptive_sampling: true` (the default), it adds the mechanisms that
-distinguish TP-ASD-RRT* from risk-weighted RRT*:
+本规划器保留了现有 RRT* 的父节点选择、重连、可行性检查，以及综合地形速度、行驶时间和辐射剂量的边代价。当 `enable_adaptive_sampling: true`（默认值）时，会启用以下机制，从而将 TP-ASD-RRT* 与风险加权 RRT* 区分开来：
 
-- an 8 by 8 region distribution weighted by
-  `max(0.05, (1 - combined_risk)^low_risk_exponent)` and goal distance;
-- a normalized mixture of uniform, direct-goal, and risk-region sampling;
-- APF extension direction mixing the sampled direction, goal attraction, and
-  the negative central-difference gradient of combined terrain/radiation risk;
-- bounded probability adaptation based on search progress, consecutive
-  failures, and iterations without improvement in closest goal distance.
+- 将地图划分为 8×8 个区域，并依据 `max(0.05, (1 - combined_risk)^low_risk_exponent)` 和目标距离分配权重；
+- 对均匀采样、直接目标采样和风险区域采样进行归一化混合；
+- 使用人工势场（APF）扩展方向，综合采样方向、目标吸引力，以及地形/辐射联合风险的负中心差分梯度；
+- 根据搜索进度、连续失败次数和最接近目标距离未改善的迭代次数，在限定范围内自适应调整采样概率。
 
-Invalid or unavailable risk values omit affected regions. If no region or
-gradient is usable, sampling safely falls back to uniform and APF continues
-without a risk term. Status strings report `samples_uniform`, `samples_goal`,
-`samples_risk`, `guided`, and `adaptations` for mechanism evidence.
+无效或不可用的风险值会使相应区域被忽略。如果没有可用区域或梯度，采样会安全回退为均匀采样，APF 也会在不使用风险项的情况下继续运行。状态字符串会报告 `samples_uniform`、`samples_goal`、`samples_risk`、`guided` 和 `adaptations`，用于验证各机制是否生效。
 
-Set `enable_adaptive_sampling:=false` in launch, or the corresponding YAML
-parameter, for the legacy baseline. That branch does not build regions, call
-the risk callback, draw any additional random numbers, or apply APF; its
-uniform/direct-goal sample and steer sequence is seed-compatible with the
-previous C++ implementation. PID, residual RL, Safety Gate, path, action, and
-command topics are unchanged.
+若要使用旧版基线，可在启动命令中设置 `enable_adaptive_sampling:=false`，或修改对应 YAML 参数。该分支不会构建风险区域、调用风险回调、额外生成随机数或应用 APF；其均匀/直接目标采样和转向序列在相同随机种子下与旧版 C++ 实现兼容。PID、残差强化学习、安全门、路径、action 和命令话题均保持不变。
 
-The main tunables are documented in `config/tp_asd_rrt_star_online.yaml`.
-`goal_sample_rate` and `risk_sample_rate` initialize the mixture; min/max
-rates preserve exploration and keep all probabilities legal. Region, gradient,
-direction-weight, adaptation interval/stagnation, and adaptation-step
-parameters are independently configurable.
+主要可调参数记录在 `config/tp_asd_rrt_star_online.yaml` 中。`goal_sample_rate` 和 `risk_sample_rate` 用于初始化混合比例；最小/最大采样率用于保留探索能力并确保所有概率合法。区域、梯度、方向权重、自适应间隔/停滞判定和自适应步长等参数均可独立配置。
 
-## Verification and result labels
+## 验证与结果标注
 
-The planner-node weighted cost combiner is shared with a pure unit test.
-Holding other terms fixed, increasing terrain, radiation, or traversal time
-strictly increases total cost under positive configured weights;
-`include_time_penalty=false` removes only the traversal-time contribution.
+规划器节点使用的加权代价组合器与纯单元测试共用同一实现。在其他项保持不变且配置权重为正时，提高地形风险、辐射风险或通行时间都会严格增加总代价；`include_time_penalty=false` 只会移除通行时间的贡献。
 
-`acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json` contains paired
-seeds 31--60 on open, risk-wall, and gradient maps. All six groups succeeded
-30/30 and TP-ASD produced nonzero risk/guided counters. Relative to the
-**legacy risk-weighted RRT* baseline**, TP-ASD mean cost changed by -0.1975366
-on open, +0.0973630 on risk-wall, and +0.0189667 on gradient. It used fewer
-mean nodes on all three. Because cost was slightly higher on two maps, this is
-a mechanism acceptance result, not evidence of uniform performance
-superiority. Planner results produced before this adaptive implementation must
-be labeled legacy risk-weighted RRT* even if an old node banner said TP-ASD.
+`acceptance_logs/tp_asd_20260822/synthetic_ab_30seeds.json` 包含开放地图、风险墙地图和梯度地图上随机种子 31–60 的配对测试。六个测试组均成功 30/30 次，且 TP-ASD 的风险采样/引导计数均非零。相较于**旧版风险加权 RRT* 基线**，TP-ASD 在开放地图、风险墙地图和梯度地图上的平均代价变化分别为 -0.1975366、+0.0973630 和 +0.0189667，三个场景中的平均节点数均更少。由于其中两张地图的代价略高，该结果只能证明机制通过验收，不能证明其性能在所有场景下都更优。在此自适应实现之前生成的规划器结果，即使旧节点横幅显示 TP-ASD，也必须标注为旧版风险加权 RRT*。
